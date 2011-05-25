@@ -4,5 +4,3 @@
 # *     /                       module:devsocket
 #
 # ~~~~
-
-WS     /                      devsocket.WatchStatic.watch

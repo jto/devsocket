@@ -1,5 +1,6 @@
 #{if play.mode.isDev()}
 <script type="text/javascript" charset="utf-8">
+  //TODO: remove jQuery deps
   $(function(){
       var socket = new WebSocket('@@{devsocket.WatchStatic.watch}');
       socket.onmessage = function(e){

@@ -9,7 +9,5 @@ POST    /contacts                               Application.save
 GET     /contacts/{id}                          Application.form
 GET     /contacts/new                           Application.form
 
-*       /devsocket                              module:devsocket
-
 # Map static resources from the /app/public folder to the /public path
 GET     /                                       staticDir:public

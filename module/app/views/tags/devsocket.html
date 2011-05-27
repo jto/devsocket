@@ -1,16 +1,14 @@
 #{if play.mode.isDev()}
 <script type="text/javascript" charset="utf-8">
-  //TODO: remove jQuery deps
+  //TODO: path problems
   $(function(){
       var socket = new WebSocket('@@{devsocket.WatchStatic.watch}');
       socket.onmessage = function(e){
-  		$('link[href^=' + e.data + ']').each(function(){
-  			var $this = $(this),
-  				h = $this.attr('href');
-  			h = h.replace(/(&|%5C?)forceReload=\d+/,'')
-  			var h2 = h + ( h.indexOf('?') >= 0 ? '&' : '?' ) + 'forceReload=' + new Date().getTime()
-  			$this.attr('href', h2)
-  		})
+        Array.prototype.slice.call(document.querySelectorAll('link[href*="' + e.data + '"]'),0).forEach(function(el){
+          var h = el.href.replace(/(&|%5C?)forceReload=\d+/,'')
+          var h2 = h + ( h.indexOf('?') >= 0 ? '&' : '?' ) + 'forceReload=' + new Date().getTime()
+          el.href = h2
+        })
       }; 
       socket.onerror = function(e){
           console.error(e)
